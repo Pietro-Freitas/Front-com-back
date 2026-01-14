@@ -95,5 +95,4 @@ public class UserController {
         model.addAttribute("links", linksDoUsuario);
         return "dashboard";
     }
-
 }

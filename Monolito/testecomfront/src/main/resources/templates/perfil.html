@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${usuario.name} + ' | MyLinkTree'">Meu Perfil</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/global.css">
+</head>
+<body class="d-flex align-items-center justify-content-center" style="min-height: 100vh;">
+
+    <div class="container text-center" style="max-width: 500px;">
+        <div class="rounded-circle bg-primary d-inline-flex align-items-center justify-content-center mb-3" 
+             style="width: 80px; height: 80px; font-size: 2rem; font-weight: bold; color: white; border: 4px solid #333;">
+             <span th:text="${#strings.substring(usuario.name,0,1)}">P</span>
+        </div>
+
+        <h2 class="fw-bold mb-1" th:text="${usuario.name}">Nome do Usuário</h2>
+        <p class="text-muted mb-4">Confira meus links abaixo:</p>
+
+        <div class="d-grid gap-3">
+            <div th:each="l : ${links}">
+                <a th:href="${l.url}" target="_blank" 
+                   class="btn btn-outline-light btn-lg w-100 py-3 fw-bold custom-card" 
+                   style="border: 1px solid #444; transition: 0.3s;">
+                   <span th:text="${l.name}">Título do Link</span>
+                </a>
+            </div>
+        </div>
+
+        <footer class="mt-5">
+            <small class="text-muted">Criado com <strong>MyLinkTree</strong></small>
+        </footer>
+    </div>
+</body>
+</html>
