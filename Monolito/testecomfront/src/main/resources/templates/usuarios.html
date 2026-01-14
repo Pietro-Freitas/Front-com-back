@@ -49,6 +49,7 @@
                 <th>ID</th>
                 <th>Nome</th>
                 <th>Email</th>
+                <th>Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -56,6 +57,9 @@
                 <td th:text="${u.id}">1</td>
                 <td th:text="${u.name}">Nome do Usuário</td>
                 <td th:text="${u.email}">email@teste.com</td>
+                <td>
+    <a th:href="@{/user/deletar/{id}(id=${u.id})}">Excluir</a>
+</td>
             </tr>
         </tbody>
     </table>
