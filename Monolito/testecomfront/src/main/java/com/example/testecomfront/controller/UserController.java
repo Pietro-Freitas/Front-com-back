@@ -10,9 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.testecomfront.entities.User;
 import com.example.testecomfront.repository.UserRepository;
+
+import jakarta.servlet.http.HttpSession;
 
 @CrossOrigin(origins = "*")
 @Controller
@@ -22,16 +25,14 @@ public class UserController {
     @Autowired
     private UserRepository repository;
 
-    // Rota para abrir o formulário de login
     @GetMapping("/login")
     public String loginPage() {
-        return "login"; // Procura templates/login.html
+        return "login";
     }
 
-    // Rota para abrir o formulário de registro
     @GetMapping("/registrar")
     public String registerPage() {
-        return "register"; // Procura templates/register.html
+        return "register";
     }
 
     @PostMapping("/registered")
@@ -66,8 +67,26 @@ public class UserController {
         return "editar";
     }
 
+    @PostMapping("/login")
+    public String login(@RequestParam String email, @RequestParam String password, HttpSession session) {
+        User user = repository.findByEmail(email);
+
+        if (user != null && user.getPassword().equals(password)) {
+            session.setAttribute("usuarioLogado", user);
+            return "redirect:/user/dashboard";
+        } else {
+            return "redirect:/user/login?error=true";
+        }
+    }
+
     @GetMapping("/dashboard")
-    public String dashboard() {
+    public String dashboard(HttpSession session, Model model) {
+        User logado = (User) session.getAttribute("usuarioLogado");
+
+        if (logado == null) return "redirect:/user/login";
+
+        model.addAttribute("usuario", logado);
         return "dashboard";
     }
+
 }
