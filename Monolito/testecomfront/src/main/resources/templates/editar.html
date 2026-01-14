@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
-    <title>Lista de Usuários - MyLinkTree</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editar Usuário</title>
+  </head>
+  <body>
     <style>
       body {
         background-color: #121212;
@@ -46,32 +49,22 @@
         border-radius: 5px;
       }
     </style>
-  </head>
-  <body>
-    <h2>Usuários Cadastrados</h2>
+    <h2>Editar Usuário</h2>
+    <form th:action="@{/user/registered}" method="post">
+      <input type="hidden" name="id" th:value="${usuarioParaEditar.id}" />
 
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nome</th>
-          <th>Email</th>
-          <th>Ações</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr th:each="u : ${usuariosNoHtml}">
-          <td th:text="${u.id}">1</td>
-          <td th:text="${u.name}">Nome do Usuário</td>
-          <td th:text="${u.email}">email@teste.com</td>
-          <td>
-            <a th:href="@{/user/deletar/{id}(id=${u.id})}">Excluir</a>
-            <a th:href="@{/user/editar/{id}(id=${u.id})}">Editar</a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+      <label>Nome:</label>
+      <input type="text" name="name" th:value="${usuarioParaEditar.name}" />
 
-    <a href="/index.html" class="btn-voltar">Voltar para Início</a>
+      <label>Email:</label>
+      <input type="email" name="email" th:value="${usuarioParaEditar.email}" />
+
+      <input type="hidden" name="password" th:value="${usuarioParaEditar.password}" />
+
+      <button type="submit">Salvar Alterações</button>
+    </form>
+    <a href="/usuarios.html" class="btn-voltar"
+      >Voltar para Lista de Usuários</a
+    >
   </body>
 </html>
