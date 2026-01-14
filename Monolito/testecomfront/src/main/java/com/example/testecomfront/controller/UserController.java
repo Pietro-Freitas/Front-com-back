@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.testecomfront.entities.Link;
 import com.example.testecomfront.entities.User;
+import com.example.testecomfront.repository.LinkRepository;
 import com.example.testecomfront.repository.UserRepository;
 
 import jakarta.servlet.http.HttpSession;
@@ -24,6 +26,8 @@ public class UserController {
 
     @Autowired
     private UserRepository repository;
+    @Autowired
+    private LinkRepository linkRepository;
 
     @GetMapping("/login")
     public String loginPage() {
@@ -82,10 +86,13 @@ public class UserController {
     @GetMapping("/dashboard")
     public String dashboard(HttpSession session, Model model) {
         User logado = (User) session.getAttribute("usuarioLogado");
+        if (logado == null)
+            return "redirect:/user/login";
 
-        if (logado == null) return "redirect:/user/login";
+        List<Link> linksDoUsuario = linkRepository.findByUserId(logado.getId());
 
         model.addAttribute("usuario", logado);
+        model.addAttribute("links", linksDoUsuario);
         return "dashboard";
     }
 

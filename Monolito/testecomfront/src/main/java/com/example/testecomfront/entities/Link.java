@@ -1,77 +1,68 @@
 package com.example.testecomfront.entities;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tb_user")
-public class User implements Serializable{
+@Table(name = "tb_link")
+public class Link {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(nullable = false)
     private String name;
+    private String url;
 
-    @Column(nullable = false)
-    private String email;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    @Column(nullable = false)
-    private String password;
+    public Link(){
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "user")
-    private List<Link> links = new ArrayList<>();
-
-    //Constructors
-    public User() {
     }
 
-    public User(String name, String email, String password) {
+    public Link(String name, String url) {
         this.name = name;
-        this.email = email;
-        this.password = password;
+        this.url = url;
     }
 
-    // Getters and Setters
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
+
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
-    public String getEmail() {
-        return email;
-    }
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    public String getPassword() {
-        return password;
-    }
-    public void setPassword(String password) {
-        this.password = password;
+
+    public String getUrl() {
+        return url;
     }
 
-    // HashCode and Equals
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+        
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -88,7 +79,7 @@ public class User implements Serializable{
             return false;
         if (getClass() != obj.getClass())
             return false;
-        User other = (User) obj;
+        Link other = (Link) obj;
         if (id == null) {
             if (other.id != null)
                 return false;
@@ -97,9 +88,9 @@ public class User implements Serializable{
         return true;
     }
 
-    // toString
     @Override
     public String toString() {
-        return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + "]";
-    }    
+        return "Link [id=" + id + ", name=" + name + ", url=" + url + "]";
+    }
+
 }
