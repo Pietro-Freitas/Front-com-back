@@ -1,16 +1,16 @@
 package com.example.testecomfront.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.example.testecomfront.entities.User;
 import com.example.testecomfront.repository.UserRepository;
 
 @CrossOrigin(origins = "*")
-@RestController
+@Controller
 @RequestMapping("/user")
 public class UserController{
 
@@ -20,7 +20,7 @@ public class UserController{
     @PostMapping("/registered")
     public String register(User user){
         repository.save(user);
-        return "User " + user.getName() + " has successfully registered!";
+        return "redirect:/success.html";
     }
 
 }
