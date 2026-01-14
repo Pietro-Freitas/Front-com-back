@@ -1,0 +1,76 @@
+/* Importando fonte moderna */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root {
+    --bg-dark: #0f0f0f;
+    --bg-card: #1e1e1e;
+    --primary: #8257e5;
+    --primary-hover: #9466ff;
+    --text-main: #e1e1e6; /* Branco puro para contraste máximo */
+    --text-muted: #969697; /* Cinza claro bem legível */
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+}
+
+/* --- Forçando cores de texto do Bootstrap --- */
+.text-muted, .text-secondary {
+    color: var(--text-muted) !important;
+}
+
+h1, h2, h3, h4, h5, h6, p, label {
+    color: var(--text-main);
+}
+
+/* --- Cards --- */
+.custom-card {
+    background-color: var(--bg-card);
+    border: 1px solid #333;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    padding: 2rem;
+}
+
+/* --- Inputs e Correção do Chrome --- */
+.form-control {
+    background-color: #121214 !important;
+    border: 1px solid #333;
+    color: white !important;
+}
+
+.form-control::placeholder {
+    color: #6c757d !important; /* Placeholder um pouco mais visível */
+}
+
+/* Impede o Chrome de deixar o input branco no preenchimento automático */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #121214 inset !important;
+    -webkit-text-fill-color: white !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+/* --- Botões --- */
+.btn-primary {
+    background-color: var(--primary);
+    border: none;
+    font-weight: 600;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    color: white;
+}
+
+/* --- Tabelas --- */
+.table-dark {
+    --bs-table-bg: var(--bg-card);
+    color: var(--text-main);
+}

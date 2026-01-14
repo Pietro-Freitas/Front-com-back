@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyLinkTree</title>
-  </head>
-  <body>
-      <H1>Organize sua presença digital</H1>
-      <p>Aqui no myLinkTree você pode organizar os seus links favoritos em um só lugar!</p>
-      <p>Clique no botão abaixo para se cadastrar e começar a usar nossos serviços. Ou caso já tenha uma conta,faça login</a>.</p>
-      <div>
-        <a href="Register.html"><button class="button-62" role="button">Cadastrar</button></a>
-        <a href="login.html"><button class="button-62" role="button">Login</button></a>
-      </div>
-  </body>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/global.css">
+</head>
+<body class="d-flex align-items-center justify-content-center">
+
+    <div class="text-center">
+        <h1 class="display-3 fw-bold mb-3">My<span style="color: var(--primary);">LinkTree</span></h1>
+        <p class="lead text-muted mb-5">Seus links, sua marca, em um só lugar.</p>
+        
+        <div class="d-flex gap-3 justify-content-center">
+            <a href="/user/login" class="btn btn-outline-light btn-lg px-4">Entrar</a>
+            <a href="/user/registrar" class="btn btn-primary btn-lg px-4">Criar Conta</a>
+        </div>
+        
+        <div class="mt-5">
+            <small class="text-muted">Área Admin (Dev): <a href="/user/listar" class="text-decoration-none" style="color: var(--primary);">Ver Usuários</a></small>
+        </div>
+    </div>
+
+</body>
 </html>
