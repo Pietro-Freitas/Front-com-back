@@ -42,7 +42,7 @@ public class UserController {
     @PostMapping("/registered")
     public String register(User user) {
         repository.save(user);
-        return "redirect:/success.html";
+        return "redirect:/user/login";
     }
 
     @GetMapping("/listar")
